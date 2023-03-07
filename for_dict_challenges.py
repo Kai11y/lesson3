@@ -12,8 +12,17 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
 
+students_dict = {}
+for student in students:
+    name_student = student['first_name']
+    if students_dict.get(name_student) != None:
+        students_dict[name_student] += 1
+    else:
+        students_dict[name_student] = 1
+
+for stud in students_dict:
+    print(f'{stud}: {students_dict[stud]}')
 
 # Задание 2
 # Дан список учеников, нужно вывести самое часто повторящееся имя
@@ -26,7 +35,17 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Оля'},
 ]
-# ???
+
+students_dict = {}
+for student in students:
+    name_student = student['first_name']
+    if students_dict.get(name_student) != None:
+        students_dict[name_student] += 1
+    else:
+        students_dict[name_student] = 1
+       
+print(f'Самое частое имя среди учеников: {max(students_dict, key=students_dict.get)}')
+
 
 
 # Задание 3
@@ -51,7 +70,17 @@ school_students = [
         {'first_name': 'Саша'},
     ],
 ]
-# ???
+
+for count,school_stud in enumerate(school_students, start=1):
+    students_dict = {}
+    for student in school_stud:
+        name_student = student['first_name']
+        if students_dict.get(name_student) != None:
+            students_dict[name_student] += 1
+        else:
+            students_dict[name_student] = 1
+       
+    print(f'Самое частое имя в классе {count}: {max(students_dict, key=students_dict.get)}')
 
 
 # Задание 4
@@ -72,7 +101,21 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-# ???
+
+
+for group in school:
+    number_group = group['class']
+    students = group['students']
+    students_dict = {'мальчики': 0, 'девочки': 0}
+    for student in students:
+        name_student = student['first_name']
+        gender = is_male[name_student]
+        if not gender:
+            students_dict['девочки'] += 1       
+        else:
+            students_dict['мальчики'] += 1
+        
+    print(f'Класс {number_group}: девочки {students_dict["девочки"]}, мальчики {students_dict["мальчики"]}')
 
 
 # Задание 5
@@ -91,5 +134,26 @@ is_male = {
     'Олег': True,
     'Миша': True,
 }
-# ???
+# создать два словаря ключи - номера классов
+# 
 
+boys_dict = {}
+girls_dict = {}
+for group in school:
+    number_group = group['class']
+    students = group['students']
+    students_dict = {'мальчики': 0, 'девочки': 0}
+    for student in students:
+        name_student = student['first_name']
+        gender = is_male[name_student]
+        if not gender:
+            students_dict['девочки'] += 1       
+        else:
+            students_dict['мальчики'] += 1
+    boys_dict[number_group] = students_dict['мальчики']
+    girls_dict[number_group] = students_dict['девочки']
+
+print(f'Больше всего мальчиков в классе {max(boys_dict, key=boys_dict.get)}')
+print(f'Больше всего девочек в классе {max(girls_dict, key=girls_dict.get)}')
+
+# вообще-то по итогу последнего принта я думала, что выведется 'Больше всего мальчиков в классе 3c 2', почему вывод без числа так и не поняла) но итог верный, ура
