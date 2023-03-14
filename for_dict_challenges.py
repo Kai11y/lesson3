@@ -16,7 +16,7 @@ students = [
 students_dict = {}
 for student in students:
     name_student = student['first_name']
-    if students_dict.get(name_student) != None:
+    if name_student in students_dict:
         students_dict[name_student] += 1
     else:
         students_dict[name_student] = 1
@@ -106,16 +106,17 @@ is_male = {
 for group in school:
     number_group = group['class']
     students = group['students']
-    students_dict = {'мальчики': 0, 'девочки': 0}
+    students_girls = 0
+    students_boys = 0
     for student in students:
         name_student = student['first_name']
         gender = is_male[name_student]
         if not gender:
-            students_dict['девочки'] += 1       
+            students_girls += 1       
         else:
-            students_dict['мальчики'] += 1
+            students_boys += 1
         
-    print(f'Класс {number_group}: девочки {students_dict["девочки"]}, мальчики {students_dict["мальчики"]}')
+    print(f'Класс {number_group}: девочки {students_girls}, мальчики {students_boys}')
 
 
 # Задание 5
@@ -142,16 +143,17 @@ girls_dict = {}
 for group in school:
     number_group = group['class']
     students = group['students']
-    students_dict = {'мальчики': 0, 'девочки': 0}
+    students_girls = 0
+    students_boys = 0
     for student in students:
         name_student = student['first_name']
         gender = is_male[name_student]
         if not gender:
-            students_dict['девочки'] += 1       
+            students_girls += 1       
         else:
-            students_dict['мальчики'] += 1
-    boys_dict[number_group] = students_dict['мальчики']
-    girls_dict[number_group] = students_dict['девочки']
+            students_boys += 1
+    boys_dict[number_group] = students_boys
+    girls_dict[number_group] = students_girls
 
 print(f'Больше всего мальчиков в классе {max(boys_dict, key=boys_dict.get)}')
 print(f'Больше всего девочек в классе {max(girls_dict, key=girls_dict.get)}')
