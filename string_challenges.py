@@ -14,19 +14,19 @@ print(len([word for word in word if word in 'ауоыиэяюёе']))
 
 # Вывести количество слов в предложении
 sentence = 'Мы приехали в гости'
-print(len(sentence) - sentence.count(' '))
+print(len(sentence.split()))
 
 
 # Вывести первую букву каждого слова на отдельной строке
 sentence = 'Мы приехали в гости'
 list_sentence = sentence.split()
-for sent in list_sentence:
-    print(sent[0])
+for word in list_sentence:
+    print(word[0])
 
 
 # Вывести усреднённую длину слова в предложении
 sentence = 'Мы приехали в гости'
-word=sentence.split()
-length=len(word)
-average_length = sum(len(count) for count in word)
-print(average_length/length)
+words = sentence.split()
+length_words = len(words)
+average_length_words = sum(len(count) for count in words)
+print(average_length_words / length_words)
